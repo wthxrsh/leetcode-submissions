@@ -1,26 +1,27 @@
 class Solution {
-    public static boolean isPalindrome(String s1) {
-    if (s1 == null || s1.isEmpty()) return true;
-
-    int p1 = 0;
-    int p2 = s1.length() - 1;
-
-    while (p1 < p2) {
-        while (p1 < p2 && !Character.isLetterOrDigit(s1.charAt(p1))) {
-            p1++;
+    public boolean isPalindrome(String s) {
+        if (s.isEmpty()) {
+        	return true;
         }
-        while (p1 < p2 && !Character.isLetterOrDigit(s1.charAt(p2))) {
-            p2--;
+        int start = 0;
+        int last = s.length() - 1;
+        while(start <= last) {
+        	char currFirst = s.charAt(start);
+        	char currLast = s.charAt(last);
+        	if (!Character.isLetterOrDigit(currFirst )) {
+        		start++;
+        	} else if(!Character.isLetterOrDigit(currLast)) {
+        		last--;
+        	} else {
+        		if (Character.toLowerCase(currFirst) != Character.toLowerCase(currLast)) {
+        			return false;
+        		}
+        		start++;
+        		last--;
+        	}
         }
-        if (Character.toLowerCase(s1.charAt(p1)) != Character.toLowerCase(s1.charAt(p2))) {
-            return false;
-        }
-
-        p1++;
-        p2--;
+        return true;
     }
-    return true;
-}
 }
 
 // Synced seamlessly with LeetHub Pro
